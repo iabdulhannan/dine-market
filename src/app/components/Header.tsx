@@ -62,8 +62,8 @@ const ShoppingCartButton = ({numberOfItemsInCart, showSideMenu, setShowSideMenu}
   setShowSideMenu: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
-    <>
-      <div className={'hidden relative lg:flex justify-between items-center hover:bg-gray-200 rounded-full p-2'}>
+    <div className={'flex gap-x-5 lg:gap-0'}>
+      <div className={'relative lg:flex justify-between items-center hover:bg-gray-200 rounded-full p-2'}>
       <span
         className={'bg-red-600 text-white absolute rounded-full text-xxs w-5 h-5 flex justify-center items-center right-0 top-1'}>{numberOfItemsInCart}</span>
         <button>
@@ -73,7 +73,7 @@ const ShoppingCartButton = ({numberOfItemsInCart, showSideMenu, setShowSideMenu}
       <button onClick={() => setShowSideMenu(!showSideMenu)} className={'hover:bg-gray-200 rounded-full p-2 lg:hidden'}>
         <RiMenu3Fill color={'#000000'} size={35}/>
       </button>
-    </>
+    </div>
   )
 }
 
