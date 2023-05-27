@@ -7,6 +7,7 @@ import Link from "next/link";
 import {RiMenu3Fill} from 'react-icons/ri';
 import {TypographyH3} from "@/app/components/ui/TypographyH3";
 import {TypographyH2} from "@/app/components/ui/TypographyH2";
+import Image from "next/image";
 
 function Header() {
   const [showSideMenu, setShowSideMenu] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
     <>
       <header className={'container'}>
         <div className={'flex py-3 justify-between items-center'}>
-          <img src={'/images/DineMarketLogo.svg'} alt={'Dine Market Logo'} height={200} width={200}/>
+          <Image src={'/images/DineMarketLogo.svg'} alt={'Dine Market Logo'} height={200} width={200}/>
           {/*Shopping Cart*/}
           <div className={'flex justify-evenly items-center gap-x-16'}>
             {/*options*/}

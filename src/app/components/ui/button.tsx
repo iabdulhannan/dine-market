@@ -1,7 +1,6 @@
 import * as React from "react"
 import {VariantProps, cva} from "class-variance-authority"
-
-import {cn} from "panaverseRoot/app/lib/utils"
+import {cn} from "@/app/lib/utils"
 import {Inter} from "next/font/google";
 import {ColorRing} from "react-loader-spinner";
 
