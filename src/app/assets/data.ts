@@ -1,4 +1,4 @@
-import {HeaderOptionsInterface} from "@/app/assets/types";
+import {FooterLinks, HeaderOptionsInterface} from "@/app/assets/types";
 
 export const headerOptions: Array<HeaderOptionsInterface> = [
   {
@@ -13,5 +13,63 @@ export const headerOptions: Array<HeaderOptionsInterface> = [
   }, {
     name: 'All Products',
     linkTo: '/allProducts'
+  }
+]
+
+export const FooterLinks: FooterLinks[] = [
+  {
+    category: 'Company',
+    links: [
+      {
+        title: 'About',
+        href: '#'
+      },
+      {
+        title: 'Terms of Use',
+        href: '#'
+      },
+      {
+        title: 'Privacy Policy',
+        href: '#'
+      },
+      {
+        title: 'How it Works',
+        href: '#'
+      },
+      {
+        title: 'Contact Us',
+        href: '#'
+      },
+    ]
+  },
+  {
+    category: 'Support',
+    links: [
+      {
+        title: 'Support Center',
+        href: '#'
+      },
+      {
+        title: '24h Service',
+        href: '#'
+      },
+      {
+        title: 'Quick Chat',
+        href: '#'
+      }
+    ]
+  },
+  {
+    category: 'Contact',
+    links: [
+      {
+        title: 'WhatsApp',
+        href: '#'
+      },
+      {
+        title: 'Support 24h',
+        href: '#'
+      }
+    ]
   }
 ]

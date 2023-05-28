@@ -5,20 +5,22 @@ import {headerOptions} from "@/app/assets/data";
 import {TypographyH4} from "@/app/components/ui/TypographyH4";
 import Link from "next/link";
 import {RiMenu3Fill} from 'react-icons/ri';
-import {TypographyH3} from "@/app/components/ui/TypographyH3";
 import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import Image from "next/image";
+import {Sora} from "next/font/google";
+const sora = Sora({subsets: ['latin']})
 
 function Header() {
   const [showSideMenu, setShowSideMenu] = useState(false);
   return (
     <>
-      <header className={'container'}>
-        <div className={'flex py-3 justify-between items-center'}>
+      <header className={`${sora.className} container h-20`}>
+        <div className={'grid grid-cols-12 place-items-center justify-items-end sm:flex py-3 sm:justify-between sm:items-center'}>
+          <div className={'col-span-6'}>
           <Image src={'/images/DineMarketLogo.svg'} alt={'Dine Market Logo'} height={200} width={200}/>
-          {/*Shopping Cart*/}
+          </div>
+            {/*options hidden on mobile*/}
           <div className={'flex justify-evenly items-center gap-x-16'}>
-            {/*options*/}
             <div className={'hidden lg:flex lg:gap-x-9'}>
               {
                 headerOptions.map((option, index) => {
@@ -30,15 +32,16 @@ function Header() {
                 })
               }
             </div>
-            {/*  Search Bar*/}
+            {/*  Search Bar on mobile*/}
             <SearchBar/>
           </div>
+          {/*Shopping Cart*/}
           <ShoppingCartButton setShowSideMenu={setShowSideMenu} showSideMenu={showSideMenu} numberOfItemsInCart={0}/>
         </div>
       </header>
       {
         <div
-          className={`lg:hidden flex flex-col gap-y-8 items-center justify-center transition-all w-full overflow-hidden duration-500 ${showSideMenu ? 'h-screen' : 'h-0'}`}>
+          className={`absolute bg-white lg:hidden flex flex-col gap-y-8 items-center justify-center transition-all w-full overflow-hidden duration-500 ${showSideMenu ? 'h-screen' : 'h-0'}`}>
           {
             headerOptions.map((option, index) => {
               return (
@@ -62,16 +65,16 @@ const ShoppingCartButton = ({numberOfItemsInCart, showSideMenu, setShowSideMenu}
   setShowSideMenu: Dispatch<SetStateAction<boolean>>
 }) => {
   return (
-    <div className={'flex gap-x-5 lg:gap-0'}>
-      <div className={'relative lg:flex justify-between items-center hover:bg-gray-200 rounded-full p-2'}>
+    <div className={'col-span-5 flex justify-end gap-x-5 lg:gap-0'}>
+      <div className={'relative flex justify-between items-center hover:bg-gray-200 rounded-full p-2 w-[55px]'}>
       <span
-        className={'bg-red-600 text-white absolute rounded-full text-xxs w-5 h-5 flex justify-center items-center right-0 top-1'}>{numberOfItemsInCart}</span>
+        className={'bg-red-600 text-white absolute rounded-full text-xxs w-4 h-4 flex justify-center items-center right-2 top-1'}>{numberOfItemsInCart}</span>
         <button>
-          <ShoppingCart color={'#000000'} size={35}/>
+          <ShoppingCart color={'#000000'} size={30}/>
         </button>
       </div>
       <button onClick={() => setShowSideMenu(!showSideMenu)} className={'hover:bg-gray-200 rounded-full p-2 lg:hidden'}>
-        <RiMenu3Fill color={'#000000'} size={35}/>
+        <RiMenu3Fill color={'#000000'} size={30}/>
       </button>
     </div>
   )
