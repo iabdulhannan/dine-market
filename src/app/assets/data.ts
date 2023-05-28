@@ -1,4 +1,4 @@
-import {FooterLinks, HeaderOptionsInterface} from "@/app/assets/types";
+import {FooterLinksInterface, HeaderOptionsInterface} from "@/app/assets/types";
 
 export const headerOptions: Array<HeaderOptionsInterface> = [
   {
@@ -16,7 +16,7 @@ export const headerOptions: Array<HeaderOptionsInterface> = [
   }
 ]
 
-export const FooterLinks: FooterLinks[] = [
+export const FooterLinks: FooterLinksInterface[] = [
   {
     category: 'Company',
     links: [

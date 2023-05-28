@@ -3,7 +3,7 @@ export interface HeaderOptionsInterface {
   linkTo: string;
 }
 
-export interface FooterLinks{
+export interface FooterLinksInterface{
   category: string;
   links: Array<{
     title: string;
