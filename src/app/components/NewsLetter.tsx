@@ -1,5 +1,4 @@
 import React from 'react';
-import {TypographyH4} from "@/app/components/ui/TypographyH4";
 import {PrimaryButton} from "@/app/components/PrimaryButton";
 
 function NewsLetter() {

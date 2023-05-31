@@ -9,7 +9,7 @@ const sora = Sora({subsets: ['latin']})
 
 function Footer() {
   return (
-    <footer className={`${sora.className} bg-white container w-full`}>
+    <footer className={`${sora.className} bg-white container w-full border-t border-t-gray-300 border-dashed mt-14 pt-14`}>
       <div className={'flex flex-col md:flex-row gap-y-3 w-full'}>
         <div className={'max-w-full md:max-w-[30%] flex flex-col gap-y-3 justify-center items-center'}>
           <Image src={'/images/DineMarketLogo.svg'} alt={'Dine Market Logo'} width={200} height={200}/>
@@ -34,7 +34,7 @@ function Footer() {
           {
             FooterLinks.map((section, index) => {
               return (
-                <section key={index} className={'mt-1 w-full flex-col items-center h-full'}>
+                <section key={index} className={'mt-5 w-full flex-col items-center h-full'}>
                   <h1 className={'font-bold text-gray-500 text-lg text-center'}>{section.category}</h1>
                   <div className={'flex flex-col items-center gap-y-2'}>
 
