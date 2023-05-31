@@ -3,16 +3,16 @@ import {FooterLinksInterface, HeaderOptionsInterface} from "@/app/assets/types";
 export const headerOptions: Array<HeaderOptionsInterface> = [
   {
     name: 'Female',
-    linkTo: '/pages/female'
+    linkTo: '/pages/shop/female'
   }, {
     name: 'Male',
-    linkTo: '/pages/male'
+    linkTo: '/pages/shop/male'
   }, {
     name: 'Kids',
-    linkTo: '/pages/kids'
+    linkTo: '/pages/shop/kids'
   }, {
     name: 'All Products',
-    linkTo: '/pages/allProducts'
+    linkTo: '/pages/shop/allProducts'
   }
 ]
 
