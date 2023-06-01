@@ -4,19 +4,10 @@ import {PrimaryButton} from "@/app/components/PrimaryButton";
 import Overview from "@/app/components/Overview";
 import ImagesBox from "@/app/components/ImagesBox";
 import Quantity from "@/app/components/Quantity";
+import SizeSelector from "@/app/components/SizeSelector";
 
 const sora = Sora({subsets: ['latin']})
 
-async function getProduct(productID: string) {
-  const res = await fetch(`https://u4m48ujb.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22product%22%20%26%26%20_id%20%3D%3D%20'${productID}'%5D%7B%22images%22%3A%20images%5B%5D.asset._ref%2Ctitle%2C%20subTitle%2C%20price%2C%20_id%2Csizes%2C%20productDetails%2C%20productCare%7D%0A%0A%0A`,
-    {next: {revalidate: 600}});
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
 export async function generateStaticParams() {
   const productIDs = await fetch(`https://u4m48ujb.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22product%22%5D%7B_id%7D%0A`).then((res) =>
     res.json(),
@@ -24,6 +15,15 @@ export async function generateStaticParams() {
   return productIDs.result.map((product: any) => ({
   productID: [`${product._id}`]
   }));
+}
+async function getProduct(productID: string) {
+  const res = await fetch(`https://u4m48ujb.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22product%22%20%26%26%20_id%20%3D%3D%20'${productID}'%5D%7B%22images%22%3A%20images%5B%5D.asset._ref%2Ctitle%2C%20subTitle%2C%20price%2C%20_id%2Csizes%2C%20productDetails%2C%20productCare%7D%0A%0A%0A`,
+    {next: {revalidate: 600}});
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
 }
 
 
@@ -50,18 +50,7 @@ async function Page
             <h1 className={'text-3xl'}>{data.result[0].title}</h1>
             <h2 className={'text-xl font-semibold text-gray-500'}>{data.result[0].subTitle}</h2>
           </div>
-          <div>
-            <label className={'text-md uppercase font-semibold'}>Select Size</label>
-            <div className={'flex flex-row justify-start items-center gap-x-10 mt-4'}>
-              {
-                data.result[0].sizes.map((size: string, index: number) => {
-                  return (
-                    <label key={index} className={'text-lg font-semibold text-gray-400'}>{size}</label>
-                  )
-                })
-              }
-            </div>
-          </div>
+          <SizeSelector sizes={data.result[0].sizes}/>
           <Quantity/>
           <div className={'flex justify-start items-center gap-x-3'}>
             <PrimaryButton title={'Add to Cart'} onClick={undefined}/>
