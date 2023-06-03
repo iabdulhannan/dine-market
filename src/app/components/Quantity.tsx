@@ -1,9 +1,17 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useFormContext} from "react-hook-form";
 
 function Quantity() {
 
   const [quantity, setQuantity] = useState(1);
+  const {setValue} = useFormContext()
+
+  // for causing re-renders on size change
+  // watch('size')
+  useEffect(()=>{
+    setValue('quantity', quantity)
+  }, [quantity])
 
   return (
     <div className={'flex flex-row gap-x-3'}>

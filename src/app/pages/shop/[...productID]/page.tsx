@@ -1,10 +1,10 @@
 import React from 'react';
 import {Sora} from "next/font/google";
-import {PrimaryButton} from "@/app/components/PrimaryButton";
 import Overview from "@/app/components/Overview";
 import ImagesBox from "@/app/components/ImagesBox";
 import Quantity from "@/app/components/Quantity";
 import SizeSelector from "@/app/components/SizeSelector";
+import AddToCart from "@/app/components/AddToCart";
 
 const sora = Sora({subsets: ['latin']})
 
@@ -25,7 +25,6 @@ async function getProduct(productID: string) {
   }
   return res.json();
 }
-
 
 async function Page
 ({
@@ -52,10 +51,7 @@ async function Page
           </div>
           <SizeSelector sizes={data.result[0].sizes}/>
           <Quantity/>
-          <div className={'flex justify-start items-center gap-x-3'}>
-            <PrimaryButton title={'Add to Cart'} onClick={undefined}/>
-            <label className={'text-xl uppercase font-semibold'}>${data.result[0].price}</label>
-          </div>
+          <AddToCart product={data.result[0]}/>
         </div>
       </div>
       <div>

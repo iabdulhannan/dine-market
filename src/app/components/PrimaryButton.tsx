@@ -3,7 +3,7 @@ import React from "react";
 export const PrimaryButton = ({classNames, title, onClick}: {
   classNames?: string,
   title: string,
-  onClick: (() => {}) | undefined
+  onClick: (() => {}) | undefined | (() => void)
 }) => {
   return (
     <button onClick={onClick}

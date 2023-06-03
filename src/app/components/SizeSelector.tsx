@@ -6,7 +6,6 @@ function SizeSelector({sizes}: { sizes: string[] }) {
 
   const {setValue, getValues, watch} = useFormContext()
 
-  const [selectedSize, setSelectedSize] = useState('S');
   // for causing re-renders on size change
   watch('size')
 
