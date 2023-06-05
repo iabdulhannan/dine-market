@@ -8,6 +8,7 @@ import {RiMenu3Fill} from 'react-icons/ri';
 import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import Image from "next/image";
 import {Sora} from "next/font/google";
+import {ShoppingCartButton} from "@/app/components/ShoppingCartButton";
 const sora = Sora({subsets: ['latin']})
 
 function Header() {
@@ -36,7 +37,7 @@ function Header() {
             <SearchBar/>
           </div>
           {/*Shopping Cart*/}
-          <ShoppingCartButton setShowSideMenu={setShowSideMenu} showSideMenu={showSideMenu} numberOfItemsInCart={0}/>
+          <ShoppingCartButton setShowSideMenu={setShowSideMenu} showSideMenu={showSideMenu} />
         </div>
       </header>
       {
@@ -59,26 +60,6 @@ function Header() {
 }
 
 
-const ShoppingCartButton = ({numberOfItemsInCart, showSideMenu, setShowSideMenu}: {
-  numberOfItemsInCart: number,
-  showSideMenu: boolean,
-  setShowSideMenu: Dispatch<SetStateAction<boolean>>
-}) => {
-  return (
-    <div className={'col-span-5 flex justify-end gap-x-5 lg:gap-0'}>
-      <div className={'relative flex justify-between items-center hover:bg-gray-200 rounded-full p-2 w-[55px]'}>
-      <span
-        className={'bg-red-600 text-white absolute rounded-full text-xxs w-4 h-4 flex justify-center items-center right-2 top-1'}>{numberOfItemsInCart}</span>
-        <button>
-          <ShoppingCart color={'#000000'} size={30}/>
-        </button>
-      </div>
-      <button onClick={() => setShowSideMenu(!showSideMenu)} className={'hover:bg-gray-200 rounded-full p-2 lg:hidden'}>
-        <RiMenu3Fill color={'#000000'} size={30}/>
-      </button>
-    </div>
-  )
-}
 
 
 const SearchBar = () => {
