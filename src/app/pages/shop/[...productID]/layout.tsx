@@ -9,6 +9,10 @@ function Layout({
 }) {
   const methods = useForm({
     defaultValues:{
+      firstImage: '',
+      title: '',
+      subTitle: '',
+      price: '',
       productID: '',
       size: 'S',
       quantity: '1',

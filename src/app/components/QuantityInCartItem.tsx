@@ -10,14 +10,14 @@ function QuantityInCartItem({product}: { product: any }) {
 
   const decrement = useCallback(
     () => {
-      dispatch(decrementQuantity({productID: product._id, size: product.size}))
+      dispatch(decrementQuantity({productID: product.productID, size: product.size}))
       setQuantity((prev) => prev - 1)
     },
     [product],
   );
   const increment = useCallback(
     () => {
-      dispatch(incrementQuantity({productID: product._id, size: product.size}))
+      dispatch(incrementQuantity({productID: product.productID, size: product.size}))
       setQuantity((prev) => prev + 1)
     },
     [product],

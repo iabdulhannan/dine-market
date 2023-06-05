@@ -7,41 +7,49 @@ import {TypographyH3} from "@/app/components/ui/TypographyH3";
 import {TypographyH4} from "@/app/components/ui/TypographyH4";
 import {Trash2} from "lucide-react";
 import QuantityInCartItem from "@/app/components/QuantityInCartItem";
+import {useAppDispatch, useAppSelector} from "@/app/hooks/reduxHooks";
+import {ProductInCart} from "@/app/assets/types";
+import {removeFromCart} from "@/app/store/slices/cartSlice";
 
-function CartItem({product}: { product: any }) {
+function CartItem({productID}: { productID: any }) {
+
+  const dispatch = useAppDispatch();
+  const product: ProductInCart | undefined = useAppSelector(state => state.cartReducer.products.find(p => p.productID === productID))
   const config = {
     baseUrl: 'https://cdn.sanity.io',
     projectId: projectId,
     dataset: dataset,
   }
 
+
   const builder = imageUrlBuilder(config)
   const urlFor = (source: string) => builder.image(source)
-
+  console.log(product?.firstImage)
   return (
-    <div className={'p-5 border border-black grid grid-cols-12 gap-3'}>
-      <div className={'col-span-3 rounded-lg'}>
-        <Image src={urlFor(product.firstImage).toString()} alt={'Product Image'} width={180} height={180}
-               className={'rounded-lg'}/>
-      </div>
-      <div className={'col-span-6 flex flex-col gap-y-2 justify-center'}>
-        <TypographyH3 text={product.title} className={'font-light text-gray-700 text-3xl'}/>
-        <TypographyH4 text={product.subTitle} className={'font-medium text-xl'}/>
-        <div className={'flex'}>
-          <TypographyH4 text={'Size: '} className={'font-medium mr-2'}/>
-          <TypographyH4 text={product.size} className={'font-medium'}/>
+    product && (
+      <div className={'p-5 border border-black grid grid-cols-12 gap-3'}>
+        <div className={'col-span-3 rounded-lg'}>
+          <Image src={urlFor(product.firstImage).toString()} alt={'Product Image'} width={180} height={180}
+                 className={'rounded-lg'}/>
         </div>
-        <TypographyH4 text={'$' + product.price} className={'font-semibold text-xl'}/>
+        <div className={'col-span-6 flex flex-col gap-y-2 justify-center'}>
+          <TypographyH3 text={product.title} className={'font-light text-gray-700 text-3xl'}/>
+          <TypographyH4 text={product.subTitle} className={'font-medium text-xl'}/>
+          <div className={'flex'}>
+            <TypographyH4 text={'Size: '} className={'font-medium mr-2'}/>
+            <TypographyH4 text={product.size} className={'font-medium'}/>
+          </div>
+          <TypographyH4 text={'$' + product.price} className={'font-semibold text-xl'}/>
+        </div>
+        <div className={'col-span-3 flex flex-col justify-between border border-black w-full'}>
+          <button onClick={() => dispatch(removeFromCart({productID: product.productID, size: product.size}))} className={'col-span-3 flex flex-col items-end'}>
+            <Trash2 color={'#C94444'}/>
+          </button>
+          <QuantityInCartItem product={product}/>
+        </div>
       </div>
-      <div className={'col-span-3 flex flex-col justify-between border border-black w-full'}>
-        <button onClick={() => console.log('deleting')} className={'col-span-3 flex flex-col items-end'}>
-          <Trash2 color={'#C94444'}/>
-        </button>
-        <QuantityInCartItem product={product}/>
-      </div>
-
-    </div>
+    )
   );
 }
 
-export default CartItem;
+export default React.memo(CartItem);

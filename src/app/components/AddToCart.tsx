@@ -14,14 +14,18 @@ function AddToCart({product}: { product: Product }) {
 
   useEffect(() => {
     setValue('productID', product._id)
+    setValue('firstImage', product.images[0])
+    setValue('title', product.title)
+    setValue('subTitle', product.subTitle)
   }, [])
 
   const submit = (values: any) => {
     const selectedProduct: ProductInCart = {
+      ...values,
       price: parseInt(product.price) * parseInt(values.quantity),
-      productID: values.productID,
+      originalPrice: parseInt(product.price),
       size: values.size,
-      quantity: values.quantity
+      quantity: values.quantity,
     }
     dispatch(addToCart(selectedProduct))
     toast.success('Added to Cart')

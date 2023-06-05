@@ -22,7 +22,11 @@ export interface Product{
 }
 export interface ProductInCart{
   productID: string,
+  firstImage: string,
+  title: string,
+  subTitle: string,
   size: string,
   quantity: string,
   price: number,
+  originalPrice: number,
 }
