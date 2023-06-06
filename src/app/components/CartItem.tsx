@@ -27,21 +27,21 @@ function CartItem({productID}: { productID: any }) {
   console.log(product?.firstImage)
   return (
     product && (
-      <div className={'p-5 border border-black grid grid-cols-12 gap-3'}>
-        <div className={'col-span-3 rounded-lg'}>
-          <Image src={urlFor(product.firstImage).toString()} alt={'Product Image'} width={180} height={180}
+      <div className={'p-5 grid grid-cols-12 gap-3 place-items-center border border-gray-100 rounded-lg'}>
+        <div className={'col-span-12 sm:col-span-3 rounded-lg'}>
+          <Image src={urlFor(product.firstImage).toString()} alt={'Product Image'} width={200} height={200}
                  className={'rounded-lg'}/>
         </div>
-        <div className={'col-span-6 flex flex-col gap-y-2 justify-center'}>
-          <TypographyH3 text={product.title} className={'font-light text-gray-700 text-3xl'}/>
-          <TypographyH4 text={product.subTitle} className={'font-medium text-xl'}/>
+        <div className={'col-span-9 sm:col-span-6 flex flex-col gap-y-2 justify-start w-full'}>
+          <TypographyH3 text={product.title} className={'font-light text-gray-700 text-xl sm:text-2xl md:text-xl lg:text-2xl'}/>
+          <TypographyH4 text={product.subTitle} className={'font-medium text-lg sm:text-xl md:text-lg lg:text-xl'}/>
           <div className={'flex'}>
             <TypographyH4 text={'Size: '} className={'font-medium mr-2'}/>
             <TypographyH4 text={product.size} className={'font-medium'}/>
           </div>
           <TypographyH4 text={'$' + product.price} className={'font-semibold text-xl'}/>
         </div>
-        <div className={'col-span-3 flex flex-col justify-between border border-black w-full'}>
+        <div className={'col-span-3 flex flex-col justify-between w-full h-full'}>
           <button onClick={() => dispatch(removeFromCart({productID: product.productID, size: product.size}))} className={'col-span-3 flex flex-col items-end'}>
             <Trash2 color={'#C94444'}/>
           </button>
@@ -52,4 +52,5 @@ function CartItem({productID}: { productID: any }) {
   );
 }
 
+// @ts-ignore
 export default React.memo(CartItem);
