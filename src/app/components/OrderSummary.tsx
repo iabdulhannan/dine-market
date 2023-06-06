@@ -9,6 +9,7 @@ import Link from "next/link";
 function OrderSummary() {
 
   const totalProducts = useAppSelector(state => state.cartReducer.products.length)
+  // @ts-ignore
   const totalCost = useAppSelector(state => state.cartReducer.products.reduce((total: number, product: ProductInCart) => total + product.price, 0))
 
   return (
