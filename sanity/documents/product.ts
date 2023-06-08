@@ -55,5 +55,10 @@ export const product = {
         layout: 'grid'
       }
     },
+    {
+      name: 'stripePriceAPIID',
+      title: 'Stripe Price API ID',
+      type: 'string',
+    }
   ]
 }

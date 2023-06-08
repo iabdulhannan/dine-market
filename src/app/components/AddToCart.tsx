@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 function AddToCart({product}: { product: Product }) {
   const dispatch = useAppDispatch();
   const {setValue, handleSubmit} = useFormContext()
-  const selectedProducts = useAppSelector(store => store.cartReducer.products)
+  // const selectedProducts = useAppSelector(store => store.cartReducer.products)
 
   useEffect(() => {
     setValue('productID', product._id)
@@ -34,7 +34,7 @@ function AddToCart({product}: { product: Product }) {
   return (
     <div className={'flex justify-start items-center gap-x-3'}>
       <PrimaryButton title={'Add to Cart'} onClick={handleSubmit(submit)}/>
-      <PrimaryButton title={'Add '} onClick={() => console.log(selectedProducts)}/>
+      {/*<PrimaryButton title={'Add '} onClick={() => console.log(selectedProducts)}/>*/}
       <label className={'text-xl uppercase font-semibold'}>${product.price}</label>
     </div>
   );

@@ -5,6 +5,7 @@ import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import {ProductInCart} from "@/app/assets/types";
 import {PrimaryButton} from "@/app/components/PrimaryButton";
 import Link from "next/link";
+import {AddressElement, CardElement, CardNumberElement} from "@stripe/react-stripe-js";
 
 function OrderSummary() {
 

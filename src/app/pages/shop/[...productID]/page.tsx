@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   }));
 }
 async function getProduct(productID: string) {
-  const res = await fetch(`https://u4m48ujb.api.sanity.io/v2021-10-21/data/query/production?query=*%5B_type%20%3D%3D%20%22product%22%20%26%26%20_id%20%3D%3D%20'${productID}'%5D%7B%22images%22%3A%20images%5B%5D.asset._ref%2Ctitle%2C%20subTitle%2C%20price%2C%20_id%2Csizes%2C%20productDetails%2C%20productCare%7D%0A%0A%0A`,
+  const res = await fetch(`https://u4m48ujb.api.sanity.io/v2023-05-28/data/query/production?query=*%5B_type%20%3D%3D%20%22product%22%20%26%26%20_id%20%3D%3D%20'${productID}'%5D%7B%22images%22%3A%20images%5B%5D.asset._ref%2Ctitle%2C%20subTitle%2C%20price%2C%20_id%2Csizes%2C%20productDetails%2C%20productCare%2C%20stripePriceAPIID%7D%0A%0A%0A`,
     {next: {revalidate: 600}});
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
