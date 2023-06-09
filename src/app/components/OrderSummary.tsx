@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useAppSelector} from "@/app/hooks/reduxHooks";
 import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import {ProductInCart} from "@/app/assets/types";
+import toast from "react-hot-toast";
 
 function OrderSummary() {
 
@@ -53,6 +54,7 @@ function OrderSummary() {
   const [checkoutURL, setCheckoutURL] = useState('');
 
   const proceedToCheckout = async () => {
+    toast.loading('Checking out', {position: 'top-center'})
     let response = await fetch('/api/checkout', {
       method: 'POST',
       mode: 'no-cors',

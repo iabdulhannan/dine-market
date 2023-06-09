@@ -46,7 +46,7 @@ function Header() {
           {
             headerOptions.map((option, index) => {
               return (
-                <Link key={index} href={option.linkTo}>
+                <Link key={index} href={option.linkTo} onClick={()=> setShowSideMenu(false)}>
                   <TypographyH2 className={'font-semibold whitespace-nowrap hover:underline focus:underline'}
                                 text={option.name}/>
                 </Link>
