@@ -8,16 +8,19 @@ import OrderSummary from "@/app/components/OrderSummary";
 
 function Page() {
 
-  const productIDs = useAppSelector(store => store.cartReducer.products.map(product => product.productID))
+  const products = useAppSelector(store => store.cartReducer.products.map(product => ({
+    productID: product.productID,
+    productSize: product.size
+  })))
 
   return (
     <div className={'container grid grid-cols-12 gap-4'}>
       {
-        productIDs.length ? (
+        products.length ? (
             <>
               <div className={'col-span-12 md:col-span-9 flex flex-col gap-y-5'}>
-                {productIDs.map((productID, index) => (
-                  <CartItem key={index} productID={productID}/>
+                {products.map((product, index) => (
+                  <CartItem key={index} productID={product.productID} productSize={product.productSize}/>
                 ))}
               </div>
                 <OrderSummary/>

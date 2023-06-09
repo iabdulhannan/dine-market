@@ -8,7 +8,7 @@ function Layout({
   children: React.ReactNode
 }) {
   const methods = useForm({
-    defaultValues:{
+    defaultValues: {
       firstImage: '',
       title: '',
       subTitle: '',
@@ -16,6 +16,7 @@ function Layout({
       productID: '',
       size: 'S',
       quantity: '1',
+      stripPriceAPIID: ''
     }
   })
 

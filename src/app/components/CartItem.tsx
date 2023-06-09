@@ -11,10 +11,10 @@ import {useAppDispatch, useAppSelector} from "@/app/hooks/reduxHooks";
 import {ProductInCart} from "@/app/assets/types";
 import {removeFromCart} from "@/app/store/slices/cartSlice";
 
-function CartItem({productID}: { productID: any }) {
+function CartItem({productID, productSize}: { productID: any, productSize: string }) {
 
   const dispatch = useAppDispatch();
-  const product: ProductInCart | undefined = useAppSelector(state => state.cartReducer.products.find(p => p.productID === productID))
+  const product: ProductInCart | undefined = useAppSelector(state => state.cartReducer.products.find(p => p.productID === productID && p.size === productSize))
   const config = {
     baseUrl: 'https://cdn.sanity.io',
     projectId: projectId,
@@ -24,7 +24,7 @@ function CartItem({productID}: { productID: any }) {
 
   const builder = imageUrlBuilder(config)
   const urlFor = (source: string) => builder.image(source)
-  console.log(product?.firstImage)
+  console.log(product?.size)
   return (
     product && (
       <div className={'p-5 grid grid-cols-12 gap-3 place-items-center border border-gray-100 rounded-lg'}>

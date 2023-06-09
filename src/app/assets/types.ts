@@ -19,6 +19,7 @@ export interface Product{
   quantity: number,
   size: string,
   images: [any],
+  stripePriceAPIID: string,
 }
 export interface ProductInCart{
   productID: string,
@@ -29,4 +30,5 @@ export interface ProductInCart{
   quantity: string,
   price: number,
   originalPrice: number,
+  stripePriceAPIID: string,
 }
