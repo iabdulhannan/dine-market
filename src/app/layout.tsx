@@ -4,6 +4,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import ReduxProvider from "@/app/store/ReduxProvider";
 import {Toaster} from "react-hot-toast";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -18,15 +19,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-    <body className={inter.className}>
-    <ReduxProvider>
-      <Header/>
-      {children}
-      <Footer/>
-      <Toaster/>
-    </ReduxProvider>
-    </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+      <body className={inter.className}>
+      <ReduxProvider>
+        <Header/>
+        {children}
+        <Footer/>
+        <Toaster/>
+      </ReduxProvider>
+      </body>
+      </html>
+    </ClerkProvider>
   )
 }
