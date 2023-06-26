@@ -5,6 +5,7 @@ import ImagesBox from "@/app/components/ImagesBox";
 import Quantity from "@/app/components/Quantity";
 import SizeSelector from "@/app/components/SizeSelector";
 import AddToCart from "@/app/components/AddToCart";
+import {TypographyH2} from "@/app/components/ui/TypographyH2";
 
 const sora = Sora({subsets: ['latin']})
 // export const dynamic = 'force-dynamic'
@@ -38,6 +39,7 @@ async function Page
   const productID = params.productID
   const data = await getProduct(productID);
 
+  console.log(data.result[0])
   return (
     <main className={`${sora.className} container flex flex-col min-h-[90%] my-16`}>
       <div className={'grid grid-cols-12 w-full gap-x-3'}>
@@ -51,7 +53,10 @@ async function Page
           </div>
           <SizeSelector sizes={data.result[0].sizes}/>
           <Quantity/>
+          <div className={'flex items-center gap-x-4'}>
           <AddToCart product={data.result[0]}/>
+          <TypographyH2 className={'mt-0 p-0'} text={'$' + data.result[0].price}/>
+          </div>
         </div>
       </div>
       <div>

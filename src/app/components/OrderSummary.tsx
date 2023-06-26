@@ -5,7 +5,7 @@ import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import {ProductInCart} from "@/app/assets/types";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import {currentUser, SignOutButton, useUser} from "@clerk/nextjs";
+import {SignOutButton, useUser} from "@clerk/nextjs";
 
 function OrderSummary() {
 
@@ -13,21 +13,7 @@ function OrderSummary() {
   // @ts-ignore
   const totalCost = useAppSelector(state => state.cartReducer.products.reduce((total: number, product: ProductInCart) => total + product.price, 0))
 
-  const {isLoaded, isSignedIn, user} = useUser()
-  // const productsToCheckout = useAppSelector(store => store.cartReducer.products.map(product => ({
-  //   price: product.stripePriceAPIID,
-  //   quantity: product.quantity
-  // })))
-
-  // const isUserLoggedIn = useAppSelector(store => store.userReducer.user.isLoggedIn)
-  // const isUserLoggedIn = JSON.parse(localStorage.getItem('user'))
-  useEffect(() => {
-    // (async () => {
-    //   const user = await currentUser();
-    console.log("User:", user, isLoaded, isSignedIn)
-    // })()
-
-  }, [isLoaded]);
+  const {isSignedIn, user} = useUser()
 
   const productsToCheckout = useAppSelector(store => {
     const products = store.cartReducer.products;
@@ -45,7 +31,6 @@ function OrderSummary() {
     const result = Array.from(map, ([price, quantity]) => ({price, quantity}));
     return result;
   });
-
 
   // const data = [
   //   {
@@ -70,15 +55,20 @@ function OrderSummary() {
     toast.loading('Checking out', {position: 'top-center'})
     const body = {
       productsToCheckout: productsToCheckout,
-      userId: user?.id
+      userId: user?.id,
+      totalAmount: totalCost
     }
-    let response = await fetch('/api/checkout', {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(body)
-    })
-    const url = (await response.json()).url;
-    setCheckoutURL(url)
+    try {
+      let response = await fetch('/api/checkout', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(body)
+      })
+      const url = (await response.json()).url;
+      setCheckoutURL(url)
+    } catch (e) {
+      toast.error('Could not checkout', {position: 'top-center'})
+    }
   }
 
   useEffect(() => {
@@ -86,7 +76,6 @@ function OrderSummary() {
       window.location.href = checkoutURL;
     }
   }, [checkoutURL]);
-
 
   return (
     <div className={'col-span-12 md:col-span-3 flex justify-center'}>
@@ -130,8 +119,6 @@ function OrderSummary() {
               </Link>
             )
         }
-        {/*<div>*/}
-        {/*</div>*/}
       </div>
     </div>
   );
