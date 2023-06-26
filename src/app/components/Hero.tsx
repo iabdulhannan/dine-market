@@ -2,6 +2,7 @@ import React from 'react';
 import {Sora} from "next/font/google";
 import {ShoppingCart} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const sora = Sora({subsets: ['latin']})
 
@@ -19,11 +20,12 @@ function Hero() {
         <label className={'text-gray-500 max-w-lg'}>
           Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
         </label>
-        <button
-          className={'bg-black w-full sm:w-96 lg:w-44 h-16 flex justify-center gap-x-3 lg:gap-0 lg:justify-around items-center p-2 border-l-2 border-gray-500 border-t-2'}>
+        <Link
+          href={'/pages/shop/allProducts'}
+          className={'bg-black w-full sm:w-96 lg:w-44 h-16 flex justify-center gap-x-3 lg:gap-0 lg:justify-around items-center p-2 border-l-2 border-gray-500 border-t-2 cursor-pointer'}>
           <ShoppingCart color={'#ffffff'} size={30} className={'w-[40px]'}/>
           <label className={'text-white font-semibold'}>Start Shopping</label>
-        </button>
+        </Link>
         <div className={'grid grid-cols-12 gap-x-5'}>
           <div className={'col-span-3'}>
             <Image src={'/images/bazaar.webp'} alt={'Bazaar Logo'} width={150} height={200}/>
