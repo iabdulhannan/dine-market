@@ -5,7 +5,7 @@ import {TypographyH2} from "@/app/components/ui/TypographyH2";
 import {ProductInCart} from "@/app/assets/types";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import {SignOutButton, useUser} from "@clerk/nextjs";
+import {useUser} from "@clerk/nextjs";
 
 function OrderSummary() {
 
@@ -28,8 +28,7 @@ function OrderSummary() {
       }
     });
 
-    const result = Array.from(map, ([price, quantity]) => ({price, quantity}));
-    return result;
+    return Array.from(map, ([price, quantity]) => ({price, quantity}));
   });
 
   // const data = [
@@ -107,9 +106,9 @@ function OrderSummary() {
                     Checkout
                   </label>
                 </button>
-                <SignOutButton signOutCallback={() => {
-                  toast.success('Signed Out', {position: 'top-center'})
-                }}/>
+                {/*<SignOutButton signOutCallback={() => {*/}
+                {/*  toast.success('Signed Out', {position: 'top-center'})*/}
+                {/*}}/>*/}
               </>
             )
             : (
