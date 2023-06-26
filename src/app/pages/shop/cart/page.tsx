@@ -15,6 +15,7 @@ function Page({searchParams}: { searchParams: any }) {
 
   const [successFullyCheckedOut, setSuccessFullyCheckedOut] = useState(false);
   const dispatch = useAppDispatch()
+  // @ts-ignore
   const totalCost = useAppSelector(state => state.cartReducer.products.reduce((total: number, product: ProductInCart) => total + product.price, 0))
   const productsToCheckout = useAppSelector(store => {
     const products = store.cartReducer.products;
